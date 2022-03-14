@@ -1,4 +1,4 @@
-const inputItem = document.querySelector('input[type = "text"]');
+const inputItem = document.querySelector('#text');
 const form = document.querySelector("form");
 const itemList = document.querySelector("#items");
 const clearBtn = document.querySelector("#clear");
@@ -21,7 +21,7 @@ function addItem(e){
 
   deleteBtn.innerHTML = "<i class='bx bx-trash'></i>"; 
 
-  li.appendChild(document.createTextNode(newItem));
+  li.innerHTML = `<p>${newItem}</p>`;
   itemList.appendChild(li);
   li.appendChild(deleteBtn);
 
@@ -35,4 +35,24 @@ function addItem(e){
   clearBtn.addEventListener("click", function (){
     itemList.removeChild(li);
   });
+}
+
+const elSearch = document.querySelector("#search");
+
+elSearch.addEventListener("keyup", filterItems);
+
+function filterItems(e) {
+  let text = e.target.value.toLowerCase();
+  let items = itemList.getElementsByTagName('li');
+  console.log(items);
+
+  for(let i = 0; i < Array.from(items).length; i++){
+    let itemName = items[i].textContent;
+    console.log(itemName);
+    if(itemName.toLowerCase().indexOf(text) != -1){
+      items[i].className = "list__item text-capitalize"
+    } else {
+      items[i].className = "list__item text-capitalize d-none";
+    }
+  }
 }
