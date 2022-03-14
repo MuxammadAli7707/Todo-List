@@ -22,7 +22,6 @@ function addItem(e){
   deleteBtn.innerHTML = "<i class='bx bx-trash'></i>"; 
 
   li.appendChild(document.createTextNode(newItem));
-  console.log(li);
   itemList.appendChild(li);
   li.appendChild(deleteBtn);
 
@@ -37,5 +36,3 @@ function addItem(e){
     itemList.removeChild(li);
   });
 }
-
-
